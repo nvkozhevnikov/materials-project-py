@@ -1,0 +1,58 @@
+{% if request.path != '/' %}
+<div class="container">
+    <div class="col bg-light rounded mb-3">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="{% url 'home:homepage' %}">
+                        <span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1"/>
+                </li>
+                {% url 'spravochnik:spravochnik-index-show' as spravochnik %}
+                {% if request.path == spravochnik %}
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                        <span itemprop="name">Справочник</span>
+                    <meta itemprop="position" content="2"/>
+                </li>
+                {% else %}
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="{% url 'spravochnik:spravochnik-index-show' %}">
+                        <span itemprop="name">Справочник</span></a>
+                    <meta itemprop="position" content="2"/>
+                </li>
+                {% endif %}
+
+                {% if category or tag %}
+                     <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope
+                        itemtype="https://schema.org/ListItem">
+                            <span itemprop="name">{{ breadcrumb.name }}</span>
+                        <meta itemprop="position" content="3"/>
+                    </li>
+                {% else %}
+
+                    {% for item in breadcrumb %}
+                        {% if item.url != None %}
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                        itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="{{ item.url }}">
+                            <span itemprop="name">{{ item.name }}</span></a>
+                        <meta itemprop="position" content="3"/>
+                    </li>
+                        {% else %}
+                     <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope
+                        itemtype="https://schema.org/ListItem">
+                            <span itemprop="name">{{ item.name }}</span>
+                        <meta itemprop="position" content="4"/>
+                    </li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endif %}

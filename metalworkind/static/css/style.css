@@ -1,0 +1,268 @@
+@import url('fontello.css');
+/*@import url('fontello-ie7.css');*/
+
+* {
+    box-sizing: border-box;
+}
+
+.body {
+    margin: 0;
+}
+.block{
+    /*background-color: #bebebf;*/
+    /*border: solid 1px #0b5ed7;*/
+    padding: 10px;
+    height: 100%;
+    font-size: 1.1rem;
+}
+.header{
+    margin-bottom: 20px;
+    height: 98px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+h2 {
+    font-size: 1.68rem;
+}
+h3 {
+    font-size: 1.25rem;
+}
+.fs2rem {
+    font-size: 2rem;
+}
+h1, h2, h3 {
+    color: #000000;
+    font-weight: 900;
+    display: block;
+    margin: 30px 0 30px 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #c5c5c5;
+    letter-spacing: 3px;
+    position: relative;
+
+}
+
+
+h1::before, h2::before, h3::before {
+    background-color: #000000;
+    border-radius: 500px;
+    bottom: -5px;
+    content: "";
+    height: 10px;
+    left: 0;
+    position: absolute;
+    width: 10px;
+}
+
+
+h1::after, h2::after, h3::after {
+    border-bottom: 2px solid #000000;
+    bottom: -1px;
+    content: "";
+    height: 0;
+    left: 0;
+    position: absolute;
+    width: 50%;
+}
+
+.breadcrumb {
+    padding: 5px 0 10px 20px;
+}
+
+.metallografy-gellery {
+    cursor: pointer;
+}
+#metallografy-popup .modal-img {
+    width: 100%;
+    cursor: pointer;
+}
+.w-15 {
+    width: 15%!important;
+}
+
+a {
+    text-decoration: none;
+}
+.required:after {
+    content: '*';
+    color: red;
+    margin-left: 3px;
+}
+
+.badge-my {
+    display: inline-block;
+    white-space: none;
+    padding: .4em .7em;
+    font-size: .8em;
+    font-weight: 700;
+    line-height: 1;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+
+.font-wight-700 {
+    font-weight:900;
+}
+.link-hover {
+    display: block;
+    padding: .5rem .5rem;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    color: black;
+
+}
+.link-hover:hover {
+   color: #064fb9;
+}
+.active {
+    color: #064fb9;
+}
+
+.btn-read {
+    border: 0;
+    padding: 0;
+    color: black;
+    border-color: white;
+    background-color: white;
+    margin-left: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+}
+article.sprav-header {
+    width: 100%;
+    height: 100%;
+}
+article.sprav-header a {
+    display: block;
+    height: 100%;
+    font-weight: 700;
+    color: black;
+}
+
+article.sprav-header a:hover {
+    color: #064fb9;
+}
+
+.img-logo-sprav {
+    display: table;
+    font-weight: 700;
+    font-size: 1.4rem;
+    height: auto;
+}
+
+.btn-logo {
+    margin-left: 1rem;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+.btn-logo-a{
+    color: white;
+}
+
+.svg-icon {
+    fill: white;
+}
+
+.title-img-logo{
+    margin: 50px 20px 40px;
+    min-height: 200px;
+    font-size: 1.4rem;
+}
+
+@media (max-width: 310px) {
+    .title-img-logo{
+        margin: 50px 20px 40px;
+        min-height: 200px;
+        font-size: 1.1rem;
+    }
+}
+
+.article-set {
+    min-height: 443px;
+    background-repeat: no-repeat;
+}
+
+.link-div {
+    display: block;
+    height: 100%;
+}
+
+p img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contents-article {
+    border: 2px solid #fff;
+    border-radius: 6px;
+    display: table;
+    margin: 1em;
+    padding: 1em;
+    position: relative;
+}
+.contents-article-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.article-tags {
+    margin-left: 1rem;
+}
+
+.tag-title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.tag-item {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin: 0 2px;
+}
+.article-tags .tag-item:not(:last-child):after {
+    content: '|';
+    position: absolute;
+    height: 50%;
+    transform: translateY(0.6%);
+    margin-left: 2px;
+    color: gray;
+}
+
+.news ul {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.news li {
+    list-style-type: none;
+}
+.news-icon {
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+    border: 0;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    vertical-align: baseline;
+    position: relative;
+    overflow: visible;
+    white-space: nowrap;
+}
+
+
+.news-a a:link {
+    text-decoration: none;
+}
+.news-a {
+    color: black;
+    font-weight: 500;
+}
+
