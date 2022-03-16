@@ -16,3 +16,11 @@ class Index(ListView):
     #     context['h1'] = 'Справочник'
     #     return context
 
+class ShowGostSection(ListView):
+    model = GostSections
+    context_object_name = 'items'
+    template_name = 'gosts/index.html'
+
+    def get_queryset(self):
+        return GostSections.objects.all()
+

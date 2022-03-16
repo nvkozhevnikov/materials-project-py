@@ -35,6 +35,9 @@ class GostSubSections(models.Model):
     def __str__(self):
         return self.subsection_group + ' ' + self.subsection_name
 
+    def get_absolute_url(self):
+        return reverse('gosts:gosts-section-show', kwargs={'slug_gost_section': self.slug})
+
     class Meta:
         verbose_name = 'Группа ГОСТов'
         verbose_name_plural = 'Группы ГОСТов'
