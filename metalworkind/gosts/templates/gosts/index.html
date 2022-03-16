@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}Справочник{% endblock %}
-{% block description %}Справочник{% endblock %}
+{% block title %}ГОСТы{% endblock %}
+{% block description %}ГОСТы{% endblock %}
 
 {% block content %}
  <div class="container">
@@ -18,7 +18,7 @@
                                 {% endfor %}
                             </ol>
                             {% for section in items %}
-                                <h2 id="stdrd-{{ forloop.counter }}">{{ section }} <a href=""><i class="icon-link-ext"></i></a></h2>
+                                <h2 id="stdrd-{{ forloop.counter }}">{{ section }} <a href="{{ section.get_absolute_url }}"><i class="icon-link-ext"></i></a></h2>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>

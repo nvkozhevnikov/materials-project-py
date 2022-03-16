@@ -7,8 +7,8 @@ class Categories(models.Model):
     h1 = models.CharField(max_length=255, verbose_name='H1')
     title = models.CharField(max_length=255, verbose_name='Title')
     description = models.CharField(max_length=255, verbose_name='Description')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', null=True)
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления', null=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
 
     def __str__(self):
         return self.title
@@ -53,7 +53,7 @@ class Spravochnik(models.Model):
     is_published = models.BooleanField(default=False, verbose_name='Опубликована')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
-    category = models.ForeignKey(Categories, on_delete=models.PROTECT, null=True,
+    category = models.ForeignKey(Categories, on_delete=models.PROTECT,
                                     verbose_name='Категория справочника')
 
     def __str__(self):

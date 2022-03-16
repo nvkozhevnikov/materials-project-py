@@ -19,8 +19,16 @@ class Index(ListView):
 class ShowGostSection(ListView):
     model = GostSections
     context_object_name = 'items'
-    template_name = 'gosts/index.html'
+    template_name = 'gosts/gost-section.html'
 
     def get_queryset(self):
-        return GostSections.objects.all()
+        return GostSections.objects.filter(slug=self.kwargs['slug_gost_section'])
+
+class ShowGostGroup(ListView):
+    model = GostSections
+    context_object_name = 'items'
+    template_name = 'gosts/gost-group.html'
+
+    def get_queryset(self):
+        return GostSections.objects.filter(slug=self.kwargs['slug_gost_group'],)
 
