@@ -25,10 +25,18 @@ class ShowGostSection(ListView):
         return GostSections.objects.filter(slug=self.kwargs['slug_gost_section'])
 
 class ShowGostGroup(ListView):
-    model = GostSections
+    model = GostSubSections
     context_object_name = 'items'
     template_name = 'gosts/gost-group.html'
 
     def get_queryset(self):
-        return GostSections.objects.filter(slug=self.kwargs['slug_gost_group'],)
+        return GostSubSections.objects.filter(slug=self.kwargs['slug_gost_group'],)
+
+class ShowGost(ListView):
+    model = Gosts
+    context_object_name = 'items'
+    template_name = 'gosts/gost-article.html'
+
+    def get_queryset(self):
+        return Gosts.objects.filter(slug=self.kwargs['slug_gost'],)
 

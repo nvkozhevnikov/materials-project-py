@@ -15,7 +15,9 @@ class GostSections(models.Model):
         return self.section_number + ' ' + self.section_name
 
     def get_absolute_url(self):
-        return reverse('gosts:gosts-section-show', kwargs={'slug_gost_section': self.slug})
+        return reverse('gosts:gosts-section-show',
+                       kwargs={'slug_gost_section': self.slug}
+                       )
 
     class Meta:
         verbose_name = 'Раздел'
@@ -39,7 +41,10 @@ class GostSubSections(models.Model):
         return self.subsection_group + ' ' + self.subsection_name
 
     def get_absolute_url(self):
-        return reverse('gosts:gosts-group-show', kwargs={'slug_gost_section': self.section.slug, 'slug_gost_group': self.slug})
+        return reverse('gosts:gosts-group-show',
+                       kwargs={'slug_gost_section': self.section.slug,
+                               'slug_gost_group': self.slug}
+                       )
 
     class Meta:
         verbose_name = 'Группа'
@@ -60,6 +65,13 @@ class Gosts(models.Model):
 
     def __str__(self):
         return self.standard + ' ' + self.standard_number
+
+    def get_absolute_url(self):
+        return reverse('gosts:gosts-article-show',
+                       kwargs={'slug_gost_section': self.subsection.section.slug,
+                               'slug_gost_group': self.subsection.slug,
+                               'slug_gost': self.slug}
+                       )
 
     class Meta:
         verbose_name = 'ГОСТ'

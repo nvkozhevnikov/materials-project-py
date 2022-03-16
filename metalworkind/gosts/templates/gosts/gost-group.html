@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{% for section in items %}
-{{ section.section_name }} - {{ section.section_number }} - раздел общероссийского классификатора государственных стандартов
+{% for group in items %}
+{{ group.subsection_name }} - {{ group.subsection_group }} - перечень стандартов
 {% endfor %}
 {% endblock %}
 {% block description %}Раздел ГОСТов{% endblock %}
@@ -14,23 +14,23 @@
             <div class="col-md-12">
                 <div class="block bg-light rounded">
                     <article>
-                        {% for section in items %}
-                        <h1>{{ section.section_number }} - {{ section.section_name }}</h1>
+                        {% for group in items %}
+                        <h1>{{ group.subsection_group }} - {{ group.subsection_name }}</h1>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                 <tr>
                                     <th>№</th>
-                                    <th>Группа</th>
+                                    <th>Стандарт</th>
                                     <th>Наименование</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for item in section.gostsubsections_set.all %}
+                                {% for item in group.gosts_set.all %}
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
-                                    <td><a href="{{ item.get_absolute_url }}">{{ item.subsection_group }}</a></td>
-                                    <td><a href="{{ item.get_absolute_url }}">{{ item.subsection_name }}</a></td>
+                                    <td><a href="{{ item.get_absolute_url }}">{{ item.standard }} {{ item.standard_number }}</a></td>
+                                    <td><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></td>
                                 </tr>
                                 {% endfor %}
                                 </tbody>
