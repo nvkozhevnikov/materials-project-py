@@ -64,18 +64,15 @@
                     itemtype="https://schema.org/ListItem">
                     <a itemprop="item" href="{{ item.subsection.get_absolute_url }}">
                         <span itemprop="name">{{ item.subsection.subsection_name }}</span></a>
-                    <meta itemprop="position" content="3"/>
-
+                    <meta itemprop="position" content="4"/>
                 </li>
                 <li class="breadcrumb-item" itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem">
                         <span itemprop="name">{{ item.standard }} {{ item.standard_number }}</span>
-                    <meta itemprop="position" content="4"/>
+                    <meta itemprop="position" content="5"/>
                 </li>
                 {% endfor %}
             {% endif %}
-
-
             </ol>
         </nav>
     </div>

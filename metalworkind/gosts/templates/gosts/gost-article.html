@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{% for gost in items %}{{ gost.title }}{% endfor %}{% endblock %}
+{% block title %}{% for gost in items %}{{ gost }} - {{ gost.title }}{% endfor %}{% endblock %}
 {% block description %}{% for gost in items %}{{ gost.description }}{% endfor %}{% endblock %}
 {% block breadcrumb %}{% include 'blocks/gost-breadcrumb.html' %}{% endblock %}
 
