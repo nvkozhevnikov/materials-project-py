@@ -30,10 +30,10 @@
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="#">О проекте</a>
+                            <a href="{% url 'home:about' slug_about='project' %}/">О проекте</a>
                         </li>
                         <li>
-                            <a href="#">О компании</a>
+                            <a href="{% url 'home:about' slug_about='company' %}/">О компании</a>
                         </li>
                     </ul>
                 </div>

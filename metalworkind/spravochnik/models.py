@@ -17,7 +17,7 @@ class Categories(models.Model):
         return reverse('spravochnik:spravochnik-category-show', kwargs={'slug_category': self.slug})
 
     class Meta:
-        verbose_name = 'Категория справочника'
+        verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
         ordering = ['title']
 
@@ -60,7 +60,7 @@ class Spravochnik(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'Справочник'
+        verbose_name = 'Статьи'
         verbose_name_plural = 'Статьи'
         ordering = ['-created_at', 'title']
 

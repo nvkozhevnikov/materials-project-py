@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'debug_toolbar',
+    'homepage.apps.HomepageConfig',
     'spravochnik.apps.SpravochnikConfig',
     'gosts.apps.GostsConfig',
 ]
@@ -64,8 +65,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
+                 os.path.join(BASE_DIR, 'homepage/templates/homepage'),
                  os.path.join(BASE_DIR, 'spravochnik/templates/spravochnik'),
-                 os.path.join(BASE_DIR, 'gosts/templates/gosts')
+                 os.path.join(BASE_DIR, 'gosts/templates/gosts'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {
