@@ -2,10 +2,9 @@
 
 {% block title %}
 {% for group in items %}
-{{ group.subsection_name }} - {{ group.subsection_group }} - перечень стандартов
-{% endfor %}
-{% endblock %}
+{{ group.subsection_name }} - {{ group.subsection_group }} - перечень стандартов{% endfor %}{% endblock %}
 {% block description %}Раздел ГОСТов{% endblock %}
+{% block breadcrumb %}{% include 'blocks/gost-breadcrumb.html' %}{% endblock %}
 
 {% block content %}
 <div class="container">

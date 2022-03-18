@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{% for gost in items %}{{ gost.title }}{% endfor %}{% endblock %}
+{% block description %}{% for gost in items %}{{ gost.description }}{% endfor %}{% endblock %}
+{% block breadcrumb %}{% include 'blocks/gost-breadcrumb.html' %}{% endblock %}
+
+{% block content %}
+<div class="container">
+        <main>
+            <div class="material-content row mb-3">
+                <div class="col-md-12">
+                    <div class="block bg-light rounded">
+                        <article>
+                          {% for gost in items %}
+                            <h1>{{ gost }}</h1>
+                                <p>{{ gost.standard }} {{ gost.standard_number }} - {{ gost.title }}. {{ gost.title_eng }}</p>
+                                <p><a href=".pdf">Скачать стандарт</a></p>
+                          {% endfor %}
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

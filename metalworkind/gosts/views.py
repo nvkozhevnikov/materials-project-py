@@ -24,13 +24,23 @@ class ShowGostSection(ListView):
     def get_queryset(self):
         return GostSections.objects.filter(slug=self.kwargs['slug_gost_section'])
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['gost_section'] = 'ok'
+        return context
+
 class ShowGostGroup(ListView):
     model = GostSubSections
     context_object_name = 'items'
     template_name = 'gosts/gost-group.html'
 
     def get_queryset(self):
-        return GostSubSections.objects.filter(slug=self.kwargs['slug_gost_group'],)
+        return GostSubSections.objects.filter(slug=self.kwargs['slug_gost_group']).select_related('section')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['gost_subsection'] = 'ok'
+        return context
 
 class ShowGost(ListView):
     model = Gosts
@@ -38,5 +48,10 @@ class ShowGost(ListView):
     template_name = 'gosts/gost-article.html'
 
     def get_queryset(self):
-        return Gosts.objects.filter(slug=self.kwargs['slug_gost'],)
+        return Gosts.objects.filter(slug=self.kwargs['slug_gost']).select_related('subsection')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['gost_article'] = 'ok'
+        return context
 
