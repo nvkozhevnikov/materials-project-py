@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ item.title }}{% endblock %}
+{% block description %}{{ item.description }}{% endblock %}
+{% block breadcrumb %}{% include 'blocks/about-breadcrumb.html' %}{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <main>
+        <div class="material-content row mb-3">
+            <div class="col-md-12">
+                <div class="block bg-light rounded">
+                    <div class="material-card">
+                        <article>
+                            <h1>{{ item.h1 }}</h1>
+                            <div class="row">
+                                <div class="col mx-4">
+                                    {{ item.post }}
+                                </div>
+
+                                <div class="col-md-5 me-3 mb-3">
+                                    <div class="border p-3 rounded">
+
+
+                                        <form method="POST" action="">
+                                            <!-- Name input -->
+                                            <div class="form-floating mb-3">
+                                                <input type="text" id="formName" name="name" class="form-control"
+                                                       placeholder="Иван Петров">
+                                                <label class="text-secondary required" for="formName">Имя</label>
+                                            </div>
+
+                                            <!-- Email input -->
+                                            <div class="form-floating mb-2">
+                                                <input type="email" class="form-control" name="email" id="floatingInput"
+                                                       placeholder="name@example.com">
+                                                <label for="floatingInput" class="text-secondary required">Email</label>
+                                            </div>
+
+                                            <!-- Subject -->
+                                            <div class="form-floating mb-2">
+                                                <select class="form-select" name="subject" id="floatingSelect"
+                                                        aria-label="Выберите тему письма">
+                                                    <option value="Ошибка на сайте">Ошибка на сайте</option>
+                                                    <option value="Запрос на размещение рекламы" selected>Запрос на
+                                                        размещение рекламы
+                                                    </option>
+                                                    <option value="Сказать Спасибо или оставить совет">Сказать "Спасибо"
+                                                        или оставить совет
+                                                    </option>
+                                                    <option value="Другое">Другое</option>
+                                                </select>
+                                                <label for="floatingSelect" class="required">Выберите тему
+                                                    письма</label>
+                                            </div>
+
+                                            <!-- Message input -->
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" name="message" id="formText"
+                                                          placeholder="Введите сообщение..."
+                                                          style="height: 150px;"></textarea>
+                                                <label for="formText" class="form-label text-secondary required">Сообщение</label>
+                                            </div>
+
+                                            <!-- Submit button -->
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary btn-block">Отправить
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

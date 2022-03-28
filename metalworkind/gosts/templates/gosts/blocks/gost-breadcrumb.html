@@ -10,7 +10,7 @@
                 </li>
             {% url 'gosts:gosts-index-show' as gosts %}
                 {% if request.path == gosts %}
-                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem">
                     <span itemprop="name">ГОСТы</span>
                     <meta itemprop="position" content="2"/>
@@ -26,7 +26,7 @@
 
             {% if gost_section %}
                 {% for item in items %}
-                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem">
                         <span itemprop="name">{{ item.section_name }}</span>
                     <meta itemprop="position" content="3"/>
@@ -42,7 +42,7 @@
                         <span itemprop="name">{{ item.section.section_name }}</span></a>
                     <meta itemprop="position" content="3"/>
                 </li>
-                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem">
                         <span itemprop="name">{{ item.subsection_name }}</span>
                     <meta itemprop="position" content="4"/>
@@ -64,7 +64,7 @@
                         <span itemprop="name">{{ item.subsection.subsection_name }}</span></a>
                     <meta itemprop="position" content="4"/>
                 </li>
-                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem">
                         <span itemprop="name">{{ item.standard }} {{ item.standard_number }}</span>
                     <meta itemprop="position" content="5"/>
