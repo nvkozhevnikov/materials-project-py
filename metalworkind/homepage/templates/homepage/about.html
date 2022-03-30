@@ -21,45 +21,34 @@
 
                                 <div class="col-md-5 me-3 mb-3">
                                     <div class="border p-3 rounded">
+                                        <form method="POST" action="{{ request.path }}">
+                                            {% csrf_token %}
 
+                                            {{ form.non_field.errors }}
+                                            {{ form.errors }}
 
-                                        <form method="POST" action="">
                                             <!-- Name input -->
                                             <div class="form-floating mb-3">
-                                                <input type="text" id="formName" name="name" class="form-control"
-                                                       placeholder="Иван Петров">
+                                                {{ form.name }}
                                                 <label class="text-secondary required" for="formName">Имя</label>
                                             </div>
 
                                             <!-- Email input -->
                                             <div class="form-floating mb-2">
-                                                <input type="email" class="form-control" name="email" id="floatingInput"
-                                                       placeholder="name@example.com">
+                                                {{ form.email }}
                                                 <label for="floatingInput" class="text-secondary required">Email</label>
                                             </div>
 
                                             <!-- Subject -->
                                             <div class="form-floating mb-2">
-                                                <select class="form-select" name="subject" id="floatingSelect"
-                                                        aria-label="Выберите тему письма">
-                                                    <option value="Ошибка на сайте">Ошибка на сайте</option>
-                                                    <option value="Запрос на размещение рекламы" selected>Запрос на
-                                                        размещение рекламы
-                                                    </option>
-                                                    <option value="Сказать Спасибо или оставить совет">Сказать "Спасибо"
-                                                        или оставить совет
-                                                    </option>
-                                                    <option value="Другое">Другое</option>
-                                                </select>
+                                                {{ form.subject }}
                                                 <label for="floatingSelect" class="required">Выберите тему
                                                     письма</label>
                                             </div>
 
                                             <!-- Message input -->
                                             <div class="form-floating mb-3">
-                                                <textarea class="form-control" name="message" id="formText"
-                                                          placeholder="Введите сообщение..."
-                                                          style="height: 150px;"></textarea>
+                                                {{ form.message }}
                                                 <label for="formText" class="form-label text-secondary required">Сообщение</label>
                                             </div>
 

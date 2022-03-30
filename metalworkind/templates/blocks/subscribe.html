@@ -4,7 +4,8 @@
             <aside class="pt-3">
                 <!-- Section: Form -->
                 <section class="row">
-                    <form method="POST" action="#">
+                    <form method="POST" action="{% url 'home:subscribe'%}">
+                        {% csrf_token %}
                         <!--Grid row-->
                         <div class="row d-flex justify-content-center">
                             <!--Grid column-->

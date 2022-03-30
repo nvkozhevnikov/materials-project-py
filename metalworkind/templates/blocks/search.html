@@ -3,7 +3,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6" itemscope itemtype="https://schema.org/WebSite">
                 <meta itemprop="url" content="#"/>
-                <form action="#" method="GET" itemprop="potentialAction" itemscope
+                <form action="{% url 'home:search' %}" method="GET" itemprop="potentialAction" itemscope
                       itemtype="https://schema.org/SearchAction">
                     <div class="block d-flex align-items-center">
                         <div class="input-group">
@@ -19,10 +19,6 @@
                         </div>
                     </div>
                 </form>
-            <!-- Button trigger modal -->
-                <p class="text-center">
-                    <a href="" data-bs-toggle="modal" data-bs-target="#searchModal">Расширенный поиск</a>
-                </p>
             </div>
         </div>
         <div class="col-md-3"></div>
