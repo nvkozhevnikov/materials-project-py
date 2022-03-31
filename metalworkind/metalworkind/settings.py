@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'spravochnik.apps.SpravochnikConfig',
     'gosts.apps.GostsConfig',
+    'marochnik.apps.MarochnikConfig',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,7 @@ TEMPLATES = [
                  os.path.join(BASE_DIR, 'homepage/templates/homepage'),
                  os.path.join(BASE_DIR, 'spravochnik/templates/spravochnik'),
                  os.path.join(BASE_DIR, 'gosts/templates/gosts'),
+                 os.path.join(BASE_DIR, 'marochnik/templates/marochnik'),
                  ],
         'APP_DIRS': True,
         'OPTIONS': {

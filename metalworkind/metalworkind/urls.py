@@ -18,9 +18,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+admin.site.site_header = 'MetalWork Industrial'
+admin.site.site_title = 'MetalWork Industrial'
+admin.site.index_title = 'MetalWork Industrial'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls', namespace='home')),
+    path('marochnik/', include('marochnik.urls', namespace='marochnik')),
     path('spravochnik/', include('spravochnik.urls', namespace='spravochnik')),
     path('gosts/', include('gosts.urls', namespace='gosts')),
 ]

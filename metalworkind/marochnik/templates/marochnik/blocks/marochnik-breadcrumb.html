@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="col bg-light rounded mb-3">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="{% url 'home:homepage' %}">
+                        <span itemprop="name">Главная</span></a>
+                    <meta itemprop="position" content="1"/>
+                </li>
+            {% url 'marochnik:marochnik-index-show' as marochnik %}
+                {% if request.path == marochnik %}
+                <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">Марочник сталей</span>
+                    <meta itemprop="position" content="2"/>
+                </li>
+                {% else %}
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="{{ marochnik }}">
+                        <span itemprop="name">Марочник сталей</span></a>
+                    <meta itemprop="position" content="2"/>
+                </li>
+                {% endif %}
+            </ol>
+        </nav>
+    </div>
+</div>

@@ -1,5 +1,4 @@
 from django.db import models
-from django.urls import reverse
 
 class About(models.Model):
     h1 = models.CharField(max_length=255, verbose_name='H1')
