@@ -23,6 +23,48 @@
                     <meta itemprop="position" content="2"/>
                 </li>
                 {% endif %}
+
+                {% if subcategory_all %}
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                        <span itemprop="name">{{ category }}</span>
+                    <meta itemprop="position" content="3"/>
+                </li>
+                {% endif%}
+
+                {% if subcategory_one %}
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="{{ subcategory.category.get_absolute_url }}">
+                        <span itemprop="name">{{ subcategory.category }}</span></a>
+                    <meta itemprop="position" content="3"/>
+                </li>
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                        <span itemprop="name">{{ subcategory }}</span>
+                    <meta itemprop="position" content="4"/>
+                </li>
+                {% endif%}
+
+                {% if material_show %}
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="{{ items.subcategory.category.get_absolute_url }}">
+                        <span itemprop="name">{{ items.subcategory.category }}</span></a>
+                    <meta itemprop="position" content="3"/>
+                </li>
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="{{ items.subcategory.get_absolute_url_one }}">
+                        <span itemprop="name">{{ items.subcategory }}</span></a>
+                    <meta itemprop="position" content="4"/>
+                </li>
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                    itemtype="https://schema.org/ListItem">
+                        <span itemprop="name">{{ items.name }}</span>
+                    <meta itemprop="position" content="5"/>
+                </li>
+                {% endif%}
             </ol>
         </nav>
     </div>

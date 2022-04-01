@@ -16,8 +16,9 @@ class SubCategoriesAll(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category'] = Categories.objects.filter(slug=self.kwargs['slug_category'])[0]
-        context['subcategories'] = SubCategories.objects.filter(category=context['category'])
-        context['materials'] = Materials.objects.filter(subcategory__in=context['subcategories'])
+        context['subcategories'] = SubCategories.objects.filter(category=context['category']).select_related('category')
+        context['materials'] = Materials.objects.filter(subcategory__in=context['subcategories']).select_related('subcategory')
+        context['subcategory_all'] = 'ok'
         return context
 
 class SubCategoriesOne(ListView):
@@ -26,8 +27,9 @@ class SubCategoriesOne(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['subcategory'] = SubCategories.objects.filter(slug=self.kwargs['slug_subcategory'])[0]
-        context['materials'] = Materials.objects.select_related('subcategory').filter(subcategory=context['subcategory'])
+        context['subcategory'] = SubCategories.objects.select_related('category').filter(slug=self.kwargs['slug_subcategory'])[0]
+        context['materials'] = Materials.objects.filter(subcategory=context['subcategory']).select_related('subcategory')
+        context['subcategory_one'] = 'ok'
         return context
 
 class Material(ListView):
@@ -36,7 +38,12 @@ class Material(ListView):
     context_object_name = 'items'
 
     def get_queryset(self):
-        return Materials.objects.filter(slug=self.kwargs['slug_material'])[0]
+        return Materials.objects.select_related('subcategory').filter(slug=self.kwargs['slug_material'])[0]
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['material_show'] = 'ok'
+        return context
 
 
 
