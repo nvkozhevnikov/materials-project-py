@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import *
-from .forms import AboutForm
+from .forms import *
+from .sendinblue_services import subscribe_doi
+
 
 def index(request):
     return render(request, 'homepage/index.html', {
@@ -24,6 +26,11 @@ def about(request, slug_about):
     })
 
 def subscribe(request):
+    if request.method == 'POST':
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            subscribe_doi(form.cleaned_data['email'])
+
     return render(request, 'homepage/index.html', {
         'h1': 'Metalworkind',
     })
