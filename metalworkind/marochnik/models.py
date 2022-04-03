@@ -103,8 +103,8 @@ class Microstructures(models.Model):
     photo_description = models.CharField(max_length=255, verbose_name='Описание фото', null=True, blank=True)
     material = models.ForeignKey(Materials, on_delete=models.PROTECT, verbose_name='Материал')
     is_published = models.BooleanField(default=False, verbose_name='Опубликована')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', null=True)
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления', null=True)
 
     def __str__(self):
         return self.photo_alt

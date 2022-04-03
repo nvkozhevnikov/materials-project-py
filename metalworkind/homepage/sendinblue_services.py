@@ -19,3 +19,22 @@ def subscribe_doi(email):
         api_instance.create_doi_contact(create_doi_contact)
     except ApiException as e:
         print("Exception when calling ContactsApi->create_doi_contact: %s\n" % e)
+
+def send_transactional_email(data):
+    """ Описание API - https://developers.sendinblue.com/reference/sendtransacemail """
+
+    configuration = sib_api_v3_sdk.Configuration()
+    configuration.api_key['api-key'] = config.SENDINBLUE_API_KEY
+
+    api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
+    subject = data['subject']
+    html_content = f"<html><body>{data['message']}</body></html>"
+    to = [{"name": config.SITE_NAME, "email": config.SENDINBLUE_ADMIN_ADDRESS}]
+    sender = {"email": data['email'], "name": data['name']}
+    send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(to=to, html_content=html_content,
+                                                   sender=sender, subject=subject)
+
+    try:
+        api_instance.send_transac_email(send_smtp_email)
+    except ApiException as e:
+        print("Exception when calling SMTPApi->send_transac_email: %s\n" % e)

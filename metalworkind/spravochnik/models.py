@@ -7,8 +7,9 @@ class Categories(models.Model):
     h1 = models.CharField(max_length=255, verbose_name='H1')
     title = models.CharField(max_length=255, verbose_name='Title')
     description = models.CharField(max_length=255, verbose_name='Description')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    is_published = models.BooleanField(default=False, verbose_name='Опубликована', null=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', null=True)
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления', null=True)
 
     def __str__(self):
         return self.title
@@ -27,8 +28,9 @@ class Tags(models.Model):
     h1 = models.CharField(max_length=255, verbose_name='H1', null=True)
     title = models.CharField(max_length=255, verbose_name='Title', null=True)
     description = models.CharField(max_length=255, verbose_name='Description', null=True)
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    is_published = models.BooleanField(default=False, verbose_name='Опубликована', null=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', null=True)
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления', null=True)
 
     def __str__(self):
         return self.tag_name
