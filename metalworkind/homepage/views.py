@@ -27,7 +27,6 @@ def about(request, slug_about):
         form = AboutForm()
 
     return render(request, 'homepage/about.html', {
-        'h1': 'Metalworkind',
         'item': page_data,
         'form': form,
     })

@@ -1,31 +1,34 @@
 {% extends 'base.html' %}
 
-{% block title %}Справочник{% endblock %}
-{% block description %}Справочник{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block description %}{{ article.description }}{% endblock %}
 {% block breadcrumb %}{% include 'blocks/breadcrumb.html' %}{% endblock %}
 
 {% block content %}
-
 <div class="container">
-        <main>
-            <div class="material-content row mb-3">
-                <div class="col-md-12">
-                    <div class="block bg-light rounded">
-                        <div class="material-card">
-                            <article>
-                                <div class="article">
-                                    <h1>{{ article.h1 }}</h1>
-                                    {{ category.get_absolut_url}}
-                                    <p>{{ article.post_introduction }}</p>
-                                    <div class="article-tags"><span class="tag-title">Тэги:</span>{% for tag in article.get_tags %} <span class="tag-item"><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></span>{% endfor %}</div>
-                                    <p>{{ article.post }}</p>
+    <main>
+        <div class="material-content row mb-3">
+            <div class="col-md-12">
+                <div class="block bg-light rounded">
+                    <div class="material-card">
+                        <article>
+                            <div class="article">
+                                <h1>{{ article.h1 }}</h1>
+                                {{ category.get_absolut_url}}
+                                <p>{{ article.post_introduction }}</p>
+                                <div class="article-tags">
+                                    <span class="tag-title">Тэги:</span>
+                                    {% for tag in article.get_tags %}
+                                    <span class="tag-item"><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></span>
+                                    {% endfor %}
                                 </div>
-                            </article>
-                        </div>
+                                <p>{{ article.post }}</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
-
+        </div>
+    </main>
+</div>
 {% endblock %}

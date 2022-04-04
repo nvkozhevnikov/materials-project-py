@@ -13,7 +13,11 @@ class Index(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['h1'] = 'Справочник'
+        if self.request.GET:
+            context['page_number'] = int(self.request.GET['page'])
+        context['title'] = 'Справочник'
+        context['description'] = 'Справочник - статьи по металлам, металлообработке, справочные данные в машиностроении и смежных областях'
+
         return context
 
 
@@ -28,6 +32,8 @@ class ShowTag(DataMixin, ListView):
         tag = context['items'][0].tags.all()[0]
         context['breadcrumb'] = {'name': tag.tag_name}
         context['tag'] = tag
+        if self.request.GET:
+            context['page_number'] = int(self.request.GET['page'])
         return context
 
 class ShowCategory(DataMixin, ListView):
@@ -41,6 +47,8 @@ class ShowCategory(DataMixin, ListView):
         category = context['items'][0].category
         context['breadcrumb'] = {'name': category.category_name}
         context['category'] = category
+        if self.request.GET:
+            context['page_number'] = int(self.request.GET['page'])
         return context
 
 
@@ -56,24 +64,5 @@ def show_article(request, slug_category, slug_article):
         'article': article,
         'breadcrumb': breadcrumb,
     })
-
-# class ShowArticle(ListView):
-#     model = Spravochnik
-#     template_name = 'spravochnik/article.html'
-#     slug_url_kwarg = 'slug_article'
-#     context_object_name = 'article'
-#
-#     def get_queryset(self):
-#         return Spravochnik.objects.filter(slug=self.kwargs['slug_article'])
-#
-#     def get_context_data(self, *, object_list=None, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         category = context['article'][0].category
-#         context['breadcrumb'] = (
-#             {'url': category.get_absolute_url, 'name': category.category_name},
-#             {'url': None, 'name': category.h1},
-#         )
-#         context['category'] = category
-#         return context
 
 
