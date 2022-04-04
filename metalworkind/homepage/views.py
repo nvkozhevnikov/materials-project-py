@@ -11,10 +11,24 @@ from .sendinblue_services import subscribe_doi, send_transactional_email
 from itertools import chain
 
 
-def index(request):
-    return render(request, 'homepage/index.html', {
-        'h1': 'Metalworkind',
-    })
+# def index(request):
+#     return render(request, 'homepage/index.html', {
+#         'h1': 'Metalworkind',
+#     })
+
+class Index(ListView):
+    template_name = 'homepage/index.html'
+    context_object_name = 'items'
+
+    def get_queryset(self):
+        return Spravochnik.objects.select_related('category').all().order_by('-id')[:8]
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['last_articles'] = Spravochnik.objects.all()
+        # .order_by('-id')[:8]
+        return context
+
 
 def about(request, slug_about):
     page_data = get_object_or_404(About, slug=slug_about)
@@ -49,7 +63,7 @@ class Search(ListView):
     context_object_name = 'items'
 
     def get_queryset(self):
-        materials = Materials.objects.prefetch_related('subcategory').filter(Q(name__icontains=self.request.GET.get('s')) |
+        materials = Materials.objects.select_related('subcategory').filter(Q(name__icontains=self.request.GET.get('s')) |
                                                                              Q(name__icontains=self.request.GET.get('s'))
                                                                              )
         articles = Spravochnik.objects.select_related('category').filter(Q(post_introduction__icontains=self.request.GET.get('s')) |

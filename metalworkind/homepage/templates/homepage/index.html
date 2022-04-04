@@ -92,11 +92,12 @@
                             <h2>Последние публикации из справочника</h2>
                         </div>
                         <div class="row justify-content-start">
+                            {% for item in items %}
                                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-4">
                                     <article class="card mb-3 sprav-header">
-                                        <img src="">
+                                        <img src="{{ item.thumb_img_article.url }}">
                                         <header class="card-body">
-                                            <p><a href="">sdvWDVSwedv</a></p>
+                                            <p><a href="{{ item.get_absolute_url }}">{{ item.h1 }}</a></p>
                                         </header>
                                         <footer>
                                             <div class="btn-read mb-3 d-flex">
@@ -106,11 +107,12 @@
                                                     <rect y="10" width="100" height="1"></rect>
                                                     <rect y="15" width="100" height="1"></rect>
                                                 </svg>
-                                                <a href="" class="ms-2">Читать</a></div>
+                                                <a href="{{ item.get_absolute_url }}" class="ms-2">Читать</a></div>
                                         </footer>
                                     </article>
                                 </div>
-                                <div class="text-end"><a href="#">Все материалы</a></div>
+                            {% endfor %}
+                                <div class="text-end"><a href="{% url 'spravochnik:spravochnik-index-show'%}">Все материалы</a></div>
                         </div>
                     </main>
                 </div>
