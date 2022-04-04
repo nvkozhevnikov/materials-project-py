@@ -5,53 +5,54 @@
 {% block breadcrumb %}{% include 'blocks/marochnik-breadcrumb.html' %}{% endblock %}
 
 {% block content %}
-  <div class="container">
-        <main>
-            <div class="material-content row mb-3">
-                <div class="col-md-12">
-                    <div class="block bg-light rounded">
-                        <article>
-                            <h1>{{ category.h1 }}</h1>
-                            <p class="fs-3 fw-bold mb-2">Группы материалов</p>
-                            <ol class="col-lg-6 col-md-12 fs-6 list-group list-group-numbered">
+<div class="container">
+    <main>
+        <div class="material-content row mb-3">
+            <div class="col-md-12">
+                <div class="block bg-light rounded">
+                    <article>
+                        <h1>{{ category.h1 }}</h1>
+                        <p class="fs-3 fw-bold mb-2">Группы материалов</p>
+                        <ol class="col-lg-6 col-md-12 fs-6 list-group list-group-numbered">
                             {% for subcategory in subcategories %}
-                                    <li class="list-group-item"><a href="#cat-{{ forloop.counter }}">{{ subcategory.name }}</a></li>
+                            <li class="list-group-item"><a href="#cat-{{ forloop.counter }}">{{ subcategory.name }}</a>
+                            </li>
                             {% endfor %}
-                            </ol>
+                        </ol>
 
-                            {% for subcategory in subcategories %}
+                        {% for subcategory in subcategories %}
 
-                                <h2 id="cat-{{ forloop.counter }}">{{ subcategory.name }} <a href="{{ subcategory.get_absolute_url_one }}"><i class="icon-link-ext"></i></a></h2>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>№</th>
-                                            <th>Материал</th>
-                                            <th>Стандарт</th>
-                                            <th>Страна</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for material in materials %}
-                                        {% if material.subcategory.pk == subcategory.pk %}
-                                                <tr>
-                                                    <td>{{ forloop.counter }}</td>
-                                                    <td><a href="{{ material.get_absolute_url }}">{{ material.name }}</a></td>
-                                                    <td>ГОСТ</td>
-                                                    <td>Россия</td>
-                                                </tr>
-                                        {% endif %}
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            {% endfor %}
-                        </article>
-                    </div>
+                        <h2 id="cat-{{ forloop.counter }}">{{ subcategory.name }} <a
+                                href="{{ subcategory.get_absolute_url_one }}"><i class="icon-link-ext"></i></a></h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Материал</th>
+                                    <th>Стандарт</th>
+                                    <th>Страна</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for material in materials %}
+                                {% if material.subcategory.pk == subcategory.pk %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td><a href="{{ material.get_absolute_url }}">{{ material.name }}</a></td>
+                                    <td>ГОСТ</td>
+                                    <td>Россия</td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endfor %}
+                    </article>
                 </div>
             </div>
-        </main>
-    </div>
-
+        </div>
+    </main>
+</div>
 {% endblock %}

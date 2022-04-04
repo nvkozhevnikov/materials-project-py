@@ -25,7 +25,7 @@
                 {% endif %}
 
                 {% if subcategory_all %}
-                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem">
                         <span itemprop="name">{{ category }}</span>
                     <meta itemprop="position" content="3"/>
@@ -39,7 +39,7 @@
                         <span itemprop="name">{{ subcategory.category }}</span></a>
                     <meta itemprop="position" content="3"/>
                 </li>
-                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem">
                         <span itemprop="name">{{ subcategory }}</span>
                     <meta itemprop="position" content="4"/>
@@ -59,7 +59,7 @@
                         <span itemprop="name">{{ items.subcategory }}</span></a>
                     <meta itemprop="position" content="4"/>
                 </li>
-                <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem">
                         <span itemprop="name">{{ items.name }}</span>
                     <meta itemprop="position" content="5"/>
