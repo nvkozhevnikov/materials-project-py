@@ -1,50 +1,51 @@
 {% extends 'base.html' %}
 
-{% block title %}ГОСТы{% endblock %}
-{% block description %}ГОСТы{% endblock %}
+{% block title %}Классификатор государственных стандартов (ГОСТ){% endblock %}
+{% block description %}Библиотека ГОСТов - собраны действующие государственные стандарты РФ, применяемые в обрабатывающей и добывающей промышленностях.{% endblock %}
 {% block breadcrumb %}{% include 'blocks/gost-breadcrumb.html' %}{% endblock %}
 
 {% block content %}
- <div class="container">
-        <main>
-            <div class="material-content row mb-3">
-                <div class="col-md-12">
-                    <div class="block bg-light rounded">
-                        <article>
-                            <h1>Классификатор государственных стандартов</h1>
-                            <p class="fs-3 fw-bold mb-2">Группы стандартов</p>
-                            <ol class="col-lg-6 col-md-12 fs-6 list-group list-group-numbered">
-                                {% for section in items %}
-                                <li class="list-group-item"><a href="#stdrd-{{ forloop.counter }}">{{ section.section_name }}</a></li>
-                                {% endfor %}
-                            </ol>
+<div class="container">
+    <main>
+        <div class="material-content row mb-3">
+            <div class="col-md-12">
+                <div class="block bg-light rounded">
+                    <article>
+                        <h1>Классификатор государственных стандартов</h1>
+                        <p class="fs-3 fw-bold mb-2">Группы стандартов</p>
+                        <ol class="col-lg-6 col-md-12 fs-6 list-group list-group-numbered">
                             {% for section in items %}
-                                <h2 id="stdrd-{{ forloop.counter }}">{{ section }} <a href="{{ section.get_absolute_url }}"><i class="icon-link-ext"></i></a></h2>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>№</th>
-                                            <th>Группа</th>
-                                            <th>Наименование</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for item in section.gostsubsections_set.all %}
-                                                <tr>
-                                                    <td>{{ forloop.counter }}</td>
-                                                    <td><a href="{{ item.get_absolute_url }}">{{ item.subsection_group }}</a></td>
-                                                    <td><a href="{{ item.get_absolute_url }}">{{ item.subsection_name }}</a></td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                           {% endfor %}
-                        </article>
-                    </div>
+                            <li class="list-group-item"><a href="#stdrd-{{ forloop.counter }}">{{ section.section_name }}</a></li>
+                            {% endfor %}
+                        </ol>
+                        {% for section in items %}
+                        <h2 id="stdrd-{{ forloop.counter }}">{{ section }} <a href="{{ section.get_absolute_url }}"><i
+                                class="icon-link-ext"></i></a></h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Группа</th>
+                                    <th>Наименование</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in section.gostsubsections_set.all %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td><a href="{{ item.get_absolute_url }}">{{ item.subsection_group }}</a></td>
+                                    <td><a href="{{ item.get_absolute_url }}">{{ item.subsection_name }}</a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endfor %}
+                    </article>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+</div>
 {% endblock %}
