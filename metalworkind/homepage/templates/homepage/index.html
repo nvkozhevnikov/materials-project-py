@@ -50,8 +50,8 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <caption>Цены на металлы по состоянию
-                                            на: 29-12-2022 16:23.
-                                            Курс доллара ЦБ РФ на сегодня 76,8765 руб.</caption>
+                                            на: {% for metal in metal_prices %}{% if forloop.counter == 1 %}{{ metal.created_at }}{% endif %}{% endfor %}.
+                                            Курс доллара ЦБ РФ на сегодня {{ usd_exchange_rate.price }} руб.</caption>
                                         <thead>
                                         <tr>
                                             <th>Металл</th>
@@ -62,13 +62,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        {% for metal in metal_prices %}
                                             <tr>
-                                                <th>WSFw</th>
-                                                <td>wdVwev</td>
-                                                <td>asdadbeb</td>
-                                                <td>adsfvaev</td>
-                                                <td>dvweVEWVw</td>
+                                                <th>{{ metal.name }}</th>
+                                                <td>{{ metal.price }}</td>
+                                                <td>{{ metal.chng_percents }}</td>
+                                                <td>{{ metal.chng_absolut }}</td>
+                                                <td>{{ metal.unit }}</td>
                                             </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>

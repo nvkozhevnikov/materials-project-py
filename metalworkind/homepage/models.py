@@ -17,3 +17,40 @@ class About(models.Model):
     class Meta:
         verbose_name = 'О нас'
         verbose_name_plural = 'О нас'
+
+class MetalPrices(models.Model):
+    name = models.CharField(max_length=55, verbose_name='Название металла')
+    chng_percents = models.FloatField(verbose_name='Изменение в %')
+    chng_absolut = models.FloatField(verbose_name='Изменение абсолютное')
+    unit = models.CharField(max_length=55, verbose_name='Единица измерения')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
+    price = models.FloatField(verbose_name='Цена')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Цена на металл'
+        verbose_name_plural = 'Цены на металлы'
+
+class Currencies(models.Model):
+    name = models.CharField(max_length=10, verbose_name='Код валюты')
+    is_published = models.BooleanField(default=False, verbose_name='Опубликована')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Код валюты'
+        verbose_name_plural = 'Коды валют'
+
+class ExchangeRates(models.Model):
+    currency = models.ForeignKey(Currencies, on_delete=models.CASCADE, verbose_name='Валюта')
+    price = models.FloatField(verbose_name='Цена')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата обновления')
+
+    class Meta:
+        verbose_name = 'Курс валюты'
+        verbose_name_plural = 'Курсы валют'

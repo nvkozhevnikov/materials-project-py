@@ -7,14 +7,13 @@ from marochnik.models import Materials
 from spravochnik.models import Spravochnik
 from gosts.models import Gosts
 from .forms import *
-from .sendinblue_services import subscribe_doi, send_transactional_email
+from homepage.services.sendinblue_services import subscribe_doi, send_transactional_email
 from itertools import chain
+from .services.cbr_exchange_rate_services import main
 
 
-# def index(request):
-#     return render(request, 'homepage/index.html', {
-#         'h1': 'Metalworkind',
-#     })
+def test(request):
+    main()
 
 class Index(ListView):
     template_name = 'homepage/index.html'
@@ -25,8 +24,8 @@ class Index(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['last_articles'] = Spravochnik.objects.all()
-        # .order_by('-id')[:8]
+        context['metal_prices'] = MetalPrices.objects.all()
+        context['usd_exchange_rate'] = ExchangeRates.objects.filter(currency__name='USD').order_by('-id')[:1][0]
         return context
 
 

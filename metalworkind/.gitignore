@@ -1,4 +1,5 @@
 config.py
+proxy_pool.py
 /media
 /__pycache__
 *.json
