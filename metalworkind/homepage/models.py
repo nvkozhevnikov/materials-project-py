@@ -54,3 +54,20 @@ class ExchangeRates(models.Model):
     class Meta:
         verbose_name = 'Курс валюты'
         verbose_name_plural = 'Курсы валют'
+
+class News(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Новость')
+    url = models.CharField(max_length=500, verbose_name='URL новости')
+    source = models.CharField(max_length=55, verbose_name='Источник')
+    published_date = models.DateField(verbose_name='Дата публикации')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+
+    def __str__(self):
+        return self.title
+
+    def get_title_admin_panel(self):
+        return self.title[:50] + ' ...'
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'

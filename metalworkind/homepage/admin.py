@@ -17,3 +17,7 @@ class CurrenciesAdmin(admin.ModelAdmin):
 @admin.register(ExchangeRates)
 class ExchangeRatesAdmin(admin.ModelAdmin):
     list_display = ('currency', 'price', 'date')
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('get_title_admin_panel', 'source', 'created_at')

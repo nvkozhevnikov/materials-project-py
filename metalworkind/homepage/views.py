@@ -7,9 +7,9 @@ from marochnik.models import Materials
 from spravochnik.models import Spravochnik
 from gosts.models import Gosts
 from .forms import *
-from homepage.services.sendinblue_service import subscribe_doi, send_transactional_email
 from itertools import chain
 
+from homepage.services.sendinblue_service import subscribe_doi, send_transactional_email
 from .services.cbr_exchange_rate_service import get_usd_rate
 from .services.get_metal_prices_service import get_metal_prices
 
@@ -30,6 +30,7 @@ class Index(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['metal_prices'] = MetalPrices.objects.all()
+        context['news'] = News.objects.all().order_by('-id')[:10]
         context['usd_exchange_rate'] = ExchangeRates.objects.filter(currency__name='USD').order_by('-id')[:1][0]
         return context
 
