@@ -43,8 +43,8 @@ def write_exchange_rate(rate):
     currency = Currencies.objects.get(name='USD')
     return ExchangeRates.objects.create(price=rate, currency=currency)
 
-def main():
+def get_usd_rate():
     write_exchange_rate(get_usd_price())
 
 if __name__ == '__main__':
-    main()
+    get_usd_rate()
