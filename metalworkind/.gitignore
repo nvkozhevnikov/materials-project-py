@@ -1,5 +1,6 @@
 config.py
 proxy_pool.py
+news_sources.py
 /media
 /__pycache__
 *.json
