@@ -7,11 +7,11 @@ from marochnik.models import Materials
 from spravochnik.models import Spravochnik
 from gosts.models import Gosts
 from .forms import *
-from homepage.services.sendinblue_services import subscribe_doi, send_transactional_email
+from homepage.services.sendinblue_service import subscribe_doi, send_transactional_email
 from itertools import chain
 
-from .services.cbr_exchange_rate_services import get_usd_rate
-from .services.get_metal_prices import get_metal_prices
+from .services.cbr_exchange_rate_service import get_usd_rate
+from .services.get_metal_prices_service import get_metal_prices
 
 
 def test(request):
