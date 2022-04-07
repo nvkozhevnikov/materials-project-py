@@ -8,15 +8,19 @@ from spravochnik.models import Spravochnik
 from gosts.models import Gosts
 from .forms import *
 from itertools import chain
+from datetime import datetime, timedelta
 
 from homepage.services.sendinblue_service import subscribe_doi, send_transactional_email
 from .services.cbr_exchange_rate_service import get_usd_rate
 from .services.get_metal_prices_service import get_metal_prices
+from .services.news_parser_service import get_news
+
 
 
 def test(request):
-    get_metal_prices()
-    get_usd_rate()
+    get_news()
+    # get_metal_prices()
+    # get_usd_rate()
     return render(request, 'homepage/index.html')
 
 
@@ -30,7 +34,7 @@ class Index(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['metal_prices'] = MetalPrices.objects.all()
-        context['news'] = News.objects.all().order_by('-id')[:10]
+        context['news'] = News.objects.filter(published_date__gt=datetime.now().date() - timedelta(days=30)).order_by('-id')[:10]
         context['usd_exchange_rate'] = ExchangeRates.objects.filter(currency__name='USD').order_by('-id')[:1][0]
         return context
 

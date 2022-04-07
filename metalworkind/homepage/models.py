@@ -67,6 +67,7 @@ class News(models.Model):
 
     def get_title_admin_panel(self):
         return self.title[:50] + ' ...'
+    get_title_admin_panel.short_description = 'Заголовок новости'
 
     class Meta:
         verbose_name = 'Новость'
