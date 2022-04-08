@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView
 from django.db.models import Q
@@ -19,9 +19,9 @@ from .services.news_parser_service import get_news
 
 def test(request):
     get_news()
-    # get_metal_prices()
-    # get_usd_rate()
-    return render(request, 'homepage/index.html')
+    get_metal_prices()
+    get_usd_rate()
+    return redirect('/')
 
 
 class Index(ListView):
