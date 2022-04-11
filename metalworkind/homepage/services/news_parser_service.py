@@ -29,20 +29,24 @@ def get_data(url):
     except:
         headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'}
         request = requests.get(url, headers=headers, verify=False, timeout=5)
-
     if request.status_code == 200:
         return request.text
+    else:
+        return None
 
 def prepare_data(html, source, value):
     soup = BeautifulSoup(html, "html.parser")
 
     if value.get('title').get('sclass'):
+        print('erher')
         title = soup.find(value['title']['tag'], attrs={'class': value['title']['class']}).find(value['title']['stag'], attrs={'class': value['title']['sclass']}).get_text().strip()
+
     else:
         title = soup.find(value['title']['tag'], attrs={'class': value['title']['class']}).get_text().strip()
 
     if value.get('link').get('sclass'):
-        link = soup.find(value['link']['tag'], attrs={'class': value['link']['class']}).find('a').get('href').strip()
+
+        link = soup.find(value['link']['tag'], attrs={'class': value['link']['class']}).find(value['link']['stag'], attrs={'class': value['link']['sclass']}).get('href').strip()
     else:
         link = soup.find(value['link']['tag'], attrs={'class': value['link']['class']}).find('a').get('href').strip()
 
@@ -57,6 +61,7 @@ def prepare_data(html, source, value):
         'published_date': datetime.strptime(modification_date(date), '%Y/%m/%d'),
         'source': source
     }
+    print(data)
 
     return data
 
@@ -152,8 +157,9 @@ def get_news():
     for source, value in sources.items():
         try:
             html = get_data(value['url'])
-            news = prepare_data(html, source, value)
-            write_metal_prices_to_db(news)
+            if html:
+                news = prepare_data(html, source, value)
+                write_metal_prices_to_db(news)
         except Exception as e:
             print(e)
 

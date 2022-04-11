@@ -4,7 +4,7 @@ from django.urls import reverse
 class GostSections(models.Model):
     section_number = models.CharField(max_length=7, unique=True, verbose_name='Номер раздела')
     section_name = models.CharField(max_length=255, unique=True, verbose_name='Название раздела')
-    slug = models.CharField(max_length=255, unique=True, verbose_name='URL')
+    slug = models.SlugField(max_length=255, unique=True, verbose_name='URL')
     h1 = models.CharField(max_length=255, verbose_name='H1')
     title = models.CharField(max_length=255, verbose_name='Title')
     description = models.CharField(max_length=255, verbose_name='Description')
@@ -27,8 +27,8 @@ class GostSections(models.Model):
 
 class GostSubSections(models.Model):
     subsection_group = models.CharField(max_length=7, unique=True, verbose_name='Номер подраздела')
-    subsection_name = models.CharField(max_length=255, unique=True, verbose_name='Название подраздела')
-    slug = models.CharField(max_length=255, unique=True, verbose_name='URL')
+    subsection_name = models.CharField(max_length=255, verbose_name='Название подраздела')
+    slug = models.SlugField(max_length=255, unique=True, verbose_name='URL')
     h1 = models.CharField(max_length=255, verbose_name='H1')
     title = models.CharField(max_length=255, verbose_name='Title')
     description = models.CharField(max_length=255, verbose_name='Description')
@@ -55,10 +55,10 @@ class GostSubSections(models.Model):
 class Gosts(models.Model):
     standard = models.CharField(max_length=255, verbose_name='Стандарт')
     standard_number = models.CharField(max_length=255, unique=True, verbose_name='Номер стандарта')
-    slug = models.CharField(max_length=255, unique=True, verbose_name='URL')
-    h1 = models.CharField(max_length=255, verbose_name='H1')
+    slug = models.SlugField(max_length=255, unique=True, verbose_name='URL')
     title = models.CharField(max_length=255, verbose_name='Title')
     title_eng = models.CharField(max_length=255, blank=True, verbose_name='English title')
+    h1 = models.CharField(max_length=255, verbose_name='H1')
     description = models.CharField(max_length=255, verbose_name='Description')
     is_published = models.BooleanField(default=False, verbose_name='Опубликована')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', null=True)

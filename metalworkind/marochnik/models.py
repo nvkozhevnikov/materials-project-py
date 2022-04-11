@@ -3,7 +3,7 @@ from django.urls import reverse
 
 class Categories(models.Model):
     name = models.CharField(max_length=255, unique=True, verbose_name='Категория')
-    slug = models.CharField(max_length=255, unique=True, verbose_name='URL')
+    slug = models.SlugField(max_length=255, unique=True, verbose_name='URL')
     metal_color = models.IntegerField(verbose_name='Цвет металла')
     h1 = models.CharField(max_length=255, verbose_name='H1', null=True, blank=True)
     title = models.CharField(max_length=255, verbose_name='Title', null=True, blank=True)
@@ -29,7 +29,7 @@ class Categories(models.Model):
 
 class SubCategories(models.Model):
     name = models.CharField(max_length=255, unique=True,verbose_name='Подкатегория')
-    slug = models.CharField(max_length=255, unique=True, verbose_name='URL')
+    slug = models.SlugField(max_length=255, unique=True, verbose_name='URL')
     h1 = models.CharField(max_length=255, verbose_name='H1', null=True, blank=True)
     title = models.CharField(max_length=255, verbose_name='Title', null=True, blank=True)
     description = models.CharField(max_length=255, verbose_name='Description', null=True, blank=True)
@@ -61,7 +61,7 @@ class SubCategories(models.Model):
 
 class Materials(models.Model):
     name = models.CharField(max_length=255, unique=True, verbose_name='Подкатегория')
-    slug = models.CharField(max_length=255, unique=True, verbose_name='URL')
+    slug = models.SlugField(max_length=255, unique=True, verbose_name='URL')
     h1 = models.CharField(max_length=255, verbose_name='H1', null=True, blank=True)
     title = models.CharField(max_length=255, verbose_name='Title', null=True, blank=True)
     description = models.CharField(max_length=255, verbose_name='Description', null=True, blank=True)
