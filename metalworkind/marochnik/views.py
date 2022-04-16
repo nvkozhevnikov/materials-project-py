@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from .models import *
 from django.shortcuts import redirect
+from django.db.models import Sum
 
 from marochnik.services.count_quantity_materials_service import *
 
@@ -12,10 +13,16 @@ def test(request):
 class Index(ListView):
     model = Categories
     template_name = 'marochnik/index.html'
-    context_object_name = 'items'
+    # context_object_name = 'items'
 
-    def get_queryset(self):
-        return Categories.objects.all()
+    # def get_queryset(self):
+    #     return Categories.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items'] = Categories.objects.all()
+        context['quantity_materials'] = context['items'].aggregate(Sum('quantity_materials'))
+        return context
 
 
 class SubCategoriesAll(ListView):
