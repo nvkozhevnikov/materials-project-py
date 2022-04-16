@@ -14,7 +14,7 @@
                         {% for gost in items %}
                         <h1>{{ gost }}</h1>
                         <p>{{ gost.standard }} {{ gost.standard_number }} - {{ gost.title }}. {{ gost.title_eng }}</p>
-                        <p><a href=".pdf">Скачать стандарт</a></p>
+                        <p><a href="/media/gosts/{{ gost.standard_number }}.pdf">Скачать стандарт</a></p>
                         {% endfor %}
                     </article>
                 </div>

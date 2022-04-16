@@ -9,6 +9,7 @@ class Categories(models.Model):
     title = models.CharField(max_length=255, verbose_name='Title', null=True, blank=True)
     description = models.CharField(max_length=255, verbose_name='Description', null=True, blank=True)
     post = models.TextField(verbose_name='Текст страницы', null=True, blank=True)
+    quantity_materials = models.IntegerField(verbose_name='Количество материалов в категории', null=True)
     is_published = models.BooleanField(default=False, verbose_name='Опубликована')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
@@ -24,8 +25,8 @@ class Categories(models.Model):
     def get_absolute_url(self):
         return reverse('marochnik:marochnik-subcategory-show', kwargs={'slug_category': self.slug})
 
-    def count_materials(self):
-        return Materials.objects.filter(subcategory__in=self.subcategories_set.all()).count()
+    # def count_materials(self):
+    #     return Materials.objects.filter(subcategory__in=self.subcategories_set.all()).count()
 
 class SubCategories(models.Model):
     name = models.CharField(max_length=255, unique=True,verbose_name='Подкатегория')
@@ -34,6 +35,7 @@ class SubCategories(models.Model):
     title = models.CharField(max_length=255, verbose_name='Title', null=True, blank=True)
     description = models.CharField(max_length=255, verbose_name='Description', null=True, blank=True)
     post = models.TextField(verbose_name='Текст страницы', null=True, blank=True)
+    quantity_materials = models.IntegerField(verbose_name='Количество материалов в подкатегории', null=True)
     is_published = models.BooleanField(default=False, verbose_name='Опубликована')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
@@ -60,7 +62,7 @@ class SubCategories(models.Model):
                        )
 
 class Materials(models.Model):
-    name = models.CharField(max_length=255, unique=True, verbose_name='Подкатегория')
+    name = models.CharField(max_length=255, unique=True, verbose_name='Материал')
     slug = models.SlugField(max_length=255, unique=True, verbose_name='URL')
     h1 = models.CharField(max_length=255, verbose_name='H1', null=True, blank=True)
     title = models.CharField(max_length=255, verbose_name='Title', null=True, blank=True)
@@ -98,9 +100,9 @@ class Materials(models.Model):
                        )
 
 class Microstructures(models.Model):
-    photo_href = models.CharField(max_length=255, unique=True, verbose_name='URL нахождения фото')
-    photo_alt = models.CharField(max_length=255, verbose_name='Alt фото')
-    photo_description = models.CharField(max_length=255, verbose_name='Описание фото', null=True, blank=True)
+    photo_href = models.CharField(max_length=500, unique=True, verbose_name='URL нахождения фото')
+    photo_alt = models.CharField(max_length=700, verbose_name='Alt фото')
+    photo_description = models.CharField(max_length=700, verbose_name='Описание фото', null=True, blank=True)
     material = models.ForeignKey(Materials, on_delete=models.PROTECT, verbose_name='Материал')
     is_published = models.BooleanField(default=False, verbose_name='Опубликована')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', null=True)

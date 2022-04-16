@@ -9,11 +9,13 @@ class MicrostructuresAdmin(admin.ModelAdmin):
 class CategoriesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)} # Автозаполнение slug
     list_display = ('name', 'is_published', 'updated_at')
+    exclude = ['quantity_materials']
 
 @admin.register(SubCategories)
 class SubCategoriesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     list_display = ('name', 'is_published', 'updated_at')
+    exclude = ['quantity_materials']
 
 @admin.register(Materials)
 class MaterialsAdmin(admin.ModelAdmin):

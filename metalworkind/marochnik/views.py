@@ -1,5 +1,13 @@
 from django.views.generic import ListView
 from .models import *
+from django.shortcuts import redirect
+
+from marochnik.services.count_quantity_materials_service import *
+
+def test(request):
+    # count_quantity_materils_category()
+    count_quantity_materils_subcategory()
+    return redirect('/marochnik/rf/')
 
 class Index(ListView):
     model = Categories
@@ -9,6 +17,7 @@ class Index(ListView):
     def get_queryset(self):
         return Categories.objects.all()
 
+
 class SubCategoriesAll(ListView):
     model = Categories
     template_name = 'marochnik/subcategory-all.html'
@@ -17,7 +26,6 @@ class SubCategoriesAll(ListView):
         context = super().get_context_data(**kwargs)
         context['category'] = Categories.objects.filter(slug=self.kwargs['slug_category'])[0]
         context['subcategories'] = SubCategories.objects.filter(category=context['category']).select_related('category')
-        context['materials'] = Materials.objects.filter(subcategory__in=context['subcategories']).select_related('subcategory')
         context['subcategory_all'] = 'ok'
         return context
 
@@ -35,13 +43,15 @@ class SubCategoriesOne(ListView):
 class Material(ListView):
     model = Materials
     template_name = 'marochnik/material.html'
-    context_object_name = 'items'
+    # context_object_name = 'items'
 
-    def get_queryset(self):
-        return Materials.objects.select_related('subcategory').filter(slug=self.kwargs['slug_material'])[0]
+    # def get_queryset(self):
+    #     return Materials.objects.select_related('subcategory').filter(slug=self.kwargs['slug_material'])[0]
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['items'] = Materials.objects.select_related('subcategory').filter(slug=self.kwargs['slug_material'])[0]
+        context['microstructures'] = Microstructures.objects.filter(material__id=context['items'].pk)
         context['material_show'] = 'ok'
         return context
 
