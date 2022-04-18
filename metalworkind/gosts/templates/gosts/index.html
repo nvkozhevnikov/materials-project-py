@@ -31,12 +31,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for item in section.gostsubsections_set.all %}
-                                <tr>
+                                {% for item in sub_sections %}
+                                {% if item.section_id == section.pk %}
+                                 <tr>
                                     <td>{{ forloop.counter }}</td>
-                                    <td><a href="{{ item.get_absolute_url }}">{{ item.subsection_group }}</a></td>
-                                    <td><a href="{{ item.get_absolute_url }}">{{ item.subsection_name }}</a></td>
+                                    <td><a href="{% url 'gosts:gosts-index-show' %}{{ section.slug }}/{{ item.slug }}/">{{ item.subsection_group }}</a></td>
+                                    <td><a href="{% url 'gosts:gosts-index-show' %}{{ section.slug }}/{{ item.slug }}/">{{ item.subsection_name }}</a></td>
                                 </tr>
+                                {% endif %}
+
                                 {% endfor %}
                                 </tbody>
                             </table>
