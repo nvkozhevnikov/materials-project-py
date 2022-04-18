@@ -12,6 +12,7 @@
                 <div class="block bg-light rounded">
                     <article>
                         <h1>{{ subcategory.h1 }}</h1>
+
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -26,7 +27,7 @@
                                 {% for material in materials %}
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
-                                    <td><a href="{{ material.get_absolute_url }}">{{ material.name }}</a></td>
+                                    <td><a href="{% url 'marochnik:marochnik-index-show' %}{{ category.slug }}/{{ subcategory.slug }}/{{ material.slug }}/">{{ material.name }}</a></td>
                                     <td>ГОСТ</td>
                                     <td>Россия</td>
                                 </tr>

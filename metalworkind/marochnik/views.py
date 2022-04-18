@@ -13,10 +13,6 @@ def test(request):
 class Index(ListView):
     model = Categories
     template_name = 'marochnik/index.html'
-    # context_object_name = 'items'
-
-    # def get_queryset(self):
-    #     return Categories.objects.all()
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -25,9 +21,9 @@ class Index(ListView):
         return context
 
 
-class SubCategoriesAll(ListView):
+class SubCategoriesList(ListView):
     model = Categories
-    template_name = 'marochnik/subcategory-all.html'
+    template_name = 'marochnik/subcategory-list.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -45,6 +41,9 @@ class SubCategoriesOne(ListView):
         context['subcategory'] = SubCategories.objects.select_related('category').filter(slug=self.kwargs['slug_subcategory'])[0]
         context['materials'] = Materials.objects.filter(subcategory=context['subcategory']).select_related('subcategory')
         context['subcategory_one'] = 'ok'
+
+        context['category'] = context['subcategory'].category
+
         return context
 
 class Material(ListView):
