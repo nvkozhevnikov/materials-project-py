@@ -85,7 +85,7 @@
                                     <ul class="news">
                                         {% for item in news %}
                                         <li class="mb-2"><a class="news-a" href="{{ item.url }}" target="_blank" rel="noopener">
-                                                <div class="news-icon" style="background-image:{{ item.source }}.png"></div>
+                                                <div class="news-icon" style="background-image:url({{ "/media/news_company_logo/"|add:item.source|add:".png" }})"></div>
                                                 <span>{{ item.title }}</span></a></li>
                                         {% endfor %}
                                     </ul>

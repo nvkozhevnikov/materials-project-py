@@ -6,7 +6,7 @@ from django.db.models import Sum
 from marochnik.services.count_quantity_materials_service import *
 
 def test(request):
-    # count_quantity_materils_category()
+    count_quantity_materils_category()
     count_quantity_materils_subcategory()
     return redirect('/marochnik/rf/')
 

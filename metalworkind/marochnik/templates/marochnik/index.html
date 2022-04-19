@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}Марочник материалов и сплавов{% endblock %}
-{% block description %}Каталог черных и цветных материалов российских производителей - Марочник сталей и сплавов MetalWork Industrial{% endblock %}
+{% block title %}Марочник материалов и сплавов | {{ quantity_materials.quantity_materials__sum }} материалов{% endblock %}
+{% block description %}Каталог из {{ quantity_materials.quantity_materials__sum }} черных и цветных материалов российских производителей - Марочник сталей и сплавов MetalWork Industrial{% endblock %}
 {% block breadcrumb %}{% include 'blocks/marochnik-breadcrumb.html' %}{% endblock %}
 
 {% block content %}
