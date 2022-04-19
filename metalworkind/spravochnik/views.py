@@ -37,7 +37,7 @@ class ShowTag(DataMixin, ListView):
         return context
 
 class ShowCategory(DataMixin, ListView):
-    template_name = 'spravochnik/subcategory-list.html'
+    template_name = 'spravochnik/category.html'
 
     def get_queryset(self):
         return Spravochnik.objects.filter(category__slug=self.kwargs['slug_category']).select_related('category')

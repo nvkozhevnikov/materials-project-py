@@ -43,9 +43,9 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
     'homepage.apps.HomepageConfig',
+    'marochnik.apps.MarochnikConfig',
     'spravochnik.apps.SpravochnikConfig',
     'gosts.apps.GostsConfig',
-    'marochnik.apps.MarochnikConfig',
 ]
 
 MIDDLEWARE = [

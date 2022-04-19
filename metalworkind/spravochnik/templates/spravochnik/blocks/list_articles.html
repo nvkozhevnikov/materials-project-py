@@ -4,7 +4,7 @@
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-4">
             <article class="card mb-3 sprav-header">
                 {% if forloop.counter > 6 %}
-                <img src="{{ item.h1 }}" loading="lazy">
+                <img src="{{ item.thumb_img_article.url }}" loading="lazy">
                 {% else %}
                 <img src="{{ item.thumb_img_article.url }}">
                 {% endif %}

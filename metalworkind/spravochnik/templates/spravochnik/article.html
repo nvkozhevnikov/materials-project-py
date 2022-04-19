@@ -14,6 +14,7 @@
                         <article>
                             <div class="article">
                                 <h1>{{ article.h1 }}</h1>
+                                {% autoescape off %}
                                 {{ category.get_absolut_url}}
                                 <p>{{ article.post_introduction }}</p>
                                 <div class="article-tags">
@@ -23,6 +24,7 @@
                                     {% endfor %}
                                 </div>
                                 <p>{{ article.post }}</p>
+                                {% endautoescape %}
                             </div>
                         </article>
                     </div>

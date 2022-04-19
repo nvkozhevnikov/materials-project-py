@@ -25,9 +25,9 @@ admin.site.index_title = 'MetalWork Industrial'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls', namespace='home')),
-    path('marochnik/rf/', include('marochnik.urls', namespace='marochnik')),
-    path('spravochnik/', include('spravochnik.urls', namespace='spravochnik')),
-    path('gosts/', include('gosts.urls', namespace='gosts')),
+    path('ru/marochnik/rf/', include('marochnik.urls', namespace='marochnik')),
+    path('ru/spravochnik/', include('spravochnik.urls', namespace='spravochnik')),
+    path('ru/gosts/', include('gosts.urls', namespace='gosts')),
 ]
 
 if settings.DEBUG:
