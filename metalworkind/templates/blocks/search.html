@@ -1,25 +1,38 @@
-   <div class="bg-light rounded mb-3">
-        <div class="row p-2">
-            <div class="col-md-3"></div>
-            <div class="col-md-6" itemscope itemtype="https://schema.org/WebSite">
-                <meta itemprop="url" content="#"/>
-                <form action="{% url 'home:search' %}" method="GET" itemprop="potentialAction" itemscope
-                      itemtype="https://schema.org/SearchAction">
-                    <div class="block d-flex align-items-center">
-                        <div class="input-group">
-                            <meta itemprop="target"
-                                  content="/ru/search?s="/>
-                            <input type="search" class="form-control rounded" placeholder="Поиск материалов"
-                                   name="s"
-                                   aria-label="Search"
-                                   aria-describedby="search-addon"
-                                   itemprop="query-input"
-                            />
-                            <button type="submit" class="btn btn-primary">Найти</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div class="bg-light rounded mb-3">
+    <div class="row p-2">
         <div class="col-md-3"></div>
-    </div>
+        {% url 'home:homepage' as home_page %}
+        {% if request.path == home_page %}
+            <div class="col-md-6" itemscope itemtype="https://schema.org/WebSite">
+            <meta itemprop="url" content="{{ request.META.HTTP_HOST }}"/>
+            <form action="{% url 'home:search' %}" method="GET" itemprop="potentialAction" itemscope
+            itemtype="https://schema.org/SearchAction">
+            <div class="block d-flex align-items-center">
+            <div class="input-group">
+            <meta itemprop="target"
+              content="{{ request.META.HTTP_HOST }}/ru/search?s="/>
+            <input type="search" class="form-control rounded" placeholder="Поиск материалов"
+               name="s"
+               aria-label="Search"
+               aria-describedby="search-addon"
+               itemprop="query-input"
+            />
+            {% else %}
+            <div class="col-md-6">
+            <form action="{% url 'home:search' %}" method="GET">
+            <div class="block d-flex align-items-center">
+            <div class="input-group">
+            <input type="search" class="form-control rounded" placeholder="Поиск материалов"
+               name="s"
+               aria-label="Search"
+               aria-describedby="search-addon"
+            />
+            {% endif %}
+                <button type="submit" class="btn btn-primary">Найти</button>
+            </div>
+            </div>
+            </form>
+            </div>
+            </div>
+    <div class="col-md-3"></div>
+</div>
