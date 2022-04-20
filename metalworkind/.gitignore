@@ -1,6 +1,9 @@
-config.py
-proxy_pool.py
-news_sources.py
+config/config.py
+config/proxy_pool.py
+config/news_sources.py
 /media
+/config
+/logs
 /__pycache__
 *.json
+*.log

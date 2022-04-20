@@ -38,7 +38,6 @@ class Index(ListView):
         context['usd_exchange_rate'] = ExchangeRates.objects.filter(currency__name='USD').order_by('-id')[:1][0]
         return context
 
-
 def about(request, slug_about):
     page_data = get_object_or_404(About, slug=slug_about)
     if request.method == 'POST':

@@ -1,5 +1,3 @@
-import sys
-
 import requests
 from bs4 import BeautifulSoup
 import random
@@ -7,8 +5,8 @@ import re
 from datetime import datetime
 from homepage.models import News
 
-import proxy_pool
-import news_sources
+from config import news_sources, proxy_pool
+
 
 def get_headers_proxy():
     users = proxy_pool.USER_AGENTS_PROXY_LIST

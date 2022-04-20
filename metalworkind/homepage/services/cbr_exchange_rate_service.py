@@ -4,7 +4,8 @@ import random
 from datetime import date
 from homepage.models import ExchangeRates, Currencies
 
-import proxy_pool
+from config import proxy_pool
+
 
 def get_headers_proxy():
     users = proxy_pool.USER_AGENTS_PROXY_LIST

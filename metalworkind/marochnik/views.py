@@ -1,5 +1,4 @@
 from django.views.generic import ListView
-from .models import *
 from django.shortcuts import redirect
 from django.db.models import Sum
 
@@ -8,7 +7,7 @@ from marochnik.services.count_quantity_materials_service import *
 def test(request):
     count_quantity_materils_category()
     count_quantity_materils_subcategory()
-    return redirect('/marochnik/rf/')
+    return redirect('/')
 
 class Index(ListView):
     model = Categories
