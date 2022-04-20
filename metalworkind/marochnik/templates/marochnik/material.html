@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ items.title }}{% endblock %}
+{% block description %}{{ items.description }}{% endblock %}
+{% block breadcrumb %}{% include 'blocks/marochnik-breadcrumb.html' %}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <main>
+    <div class="material-content row mb-3">
+      <div class="col-md-12">
+        <div class="block bg-light rounded">
+          <div class="material-card">
+            <article>
+              <h1>{{ items.h1 }}</h1>
+              {% autoescape off %}
+
+              {{ items.main_properties }}
+              {{ items.faq }}
+              {{ items.him_sostav }}
+              {{ items.meh_properties }}
+              {{ items.tverdost }}
+              {{ items.fiz_properties }}
+              {{ items.temp_krit_tchk }}
+              {{ items.tehnol_properties }}
+              {% include 'blocks/microstructures.html' %}
+              {{ items.inter_analogs }}
+              {{ items.vidy_postavki }}
+              {{ items.sources }}
+
+              {% endautoescape %}
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

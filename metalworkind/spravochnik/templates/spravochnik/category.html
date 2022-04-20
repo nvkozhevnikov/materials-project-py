@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}Справочник{% endblock %}
-{% block description %}Справочник{% endblock %}
+{% block title %}{% if page_number > 1 %}{{ category.title }} | Страница {{ page_number }}{% else %}{{ category.title }}{% endif %}{% endblock %}
+{% block description %}{% if page_number > 1 %}{{ category.description }} | Страница {{ page_number }}{% else %}{{ category.description }}{% endif %}{% endblock %}
 {% block breadcrumb %}{% include 'blocks/breadcrumb.html' %}{% endblock %}
 
 {% block content %}
- <div class="container">
-        <main>
-            <div class="material-content row mb-3">
-                <div class="">
-                    <div class="block bg-light rounded">
-                        <article>
-                            <h1>{{ category.h1 }}</h1>
-                            {% include 'blocks/list_articles.html' %}
-                            {% include 'blocks/pagination.html' %}
-                        </article>
-                    </div>
+<div class="container">
+    <main>
+        <div class="material-content row mb-3">
+            <div>
+                <div class="block bg-light rounded">
+                    <article>
+                        <h1>{{ category.h1 }}</h1>
+                        {% include 'blocks/list_articles.html' %}
+                        {% include 'blocks/pagination.html' %}
+                    </article>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+</div>
 {% endblock %}

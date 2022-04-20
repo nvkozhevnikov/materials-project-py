@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}{% for section in items %}{{ section.section_name }} - {{ section.section_number }} - раздел общероссийского классификатора государственных стандартов{% endfor %}{% endblock %}
+{% block description %}{% for section in items %}{{ section.description }}{% endfor %}{% endblock %}
+{% block breadcrumb %}{% include 'blocks/gost-breadcrumb.html' %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <main>
+        <div class="material-content row mb-3">
+            <div class="col-md-12">
+                <div class="block bg-light rounded">
+                    <article>
+                        {% for section in items %}
+                        <h1>{{ section.section_number }} - {{ section.section_name }}</h1>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Группа</th>
+                                    <th>Наименование</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in section.gostsubsections_set.all %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td><a href="{{ item.get_absolute_url }}">{{ item.subsection_group }}</a></td>
+                                    <td><a href="{{ item.get_absolute_url }}">{{ item.subsection_name }}</a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endfor %}
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

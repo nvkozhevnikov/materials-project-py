@@ -3,10 +3,12 @@ from django.urls import reverse
 
 class Categories(models.Model):
     category_name = models.CharField(max_length=255, verbose_name='Название категории')
-    slug = models.CharField(max_length=255, verbose_name='URL')
+    slug = models.SlugField(max_length=255, verbose_name='URL')
     h1 = models.CharField(max_length=255, verbose_name='H1')
     title = models.CharField(max_length=255, verbose_name='Title')
     description = models.CharField(max_length=255, verbose_name='Description')
+    post = models.TextField(verbose_name='Описание', null=True, blank=True)
+    is_published = models.BooleanField(default=False, verbose_name='Опубликована', null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', null=True)
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления', null=True)
 
@@ -17,7 +19,7 @@ class Categories(models.Model):
         return reverse('spravochnik:spravochnik-category-show', kwargs={'slug_category': self.slug})
 
     class Meta:
-        verbose_name = 'Категория справочника'
+        verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
         ordering = ['title']
 
@@ -27,8 +29,10 @@ class Tags(models.Model):
     h1 = models.CharField(max_length=255, verbose_name='H1', null=True)
     title = models.CharField(max_length=255, verbose_name='Title', null=True)
     description = models.CharField(max_length=255, verbose_name='Description', null=True)
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    post = models.TextField(verbose_name='Описание', null=True, blank=True)
+    is_published = models.BooleanField(default=False, verbose_name='Опубликована', null=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', null=True)
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления', null=True)
 
     def __str__(self):
         return self.tag_name
@@ -53,14 +57,14 @@ class Spravochnik(models.Model):
     is_published = models.BooleanField(default=False, verbose_name='Опубликована')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
-    category = models.ForeignKey(Categories, on_delete=models.PROTECT, null=True,
+    category = models.ForeignKey(Categories, on_delete=models.PROTECT,
                                     verbose_name='Категория справочника')
 
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name = 'Справочник'
+        verbose_name = 'Статьи'
         verbose_name_plural = 'Статьи'
         ordering = ['-created_at', 'title']
 

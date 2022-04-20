@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'debug_toolbar',
+    'homepage.apps.HomepageConfig',
+    'marochnik.apps.MarochnikConfig',
     'spravochnik.apps.SpravochnikConfig',
     'gosts.apps.GostsConfig',
 ]
@@ -64,7 +66,11 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                 os.path.join(BASE_DIR, 'spravochnik/templates/spravochnik'),],
+                 os.path.join(BASE_DIR, 'homepage/templates/homepage'),
+                 os.path.join(BASE_DIR, 'spravochnik/templates/spravochnik'),
+                 os.path.join(BASE_DIR, 'gosts/templates/gosts'),
+                 os.path.join(BASE_DIR, 'marochnik/templates/marochnik'),
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

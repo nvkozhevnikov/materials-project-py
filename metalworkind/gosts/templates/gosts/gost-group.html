@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}{% for group in items %}{{ group.subsection_name }} - {{ group.subsection_group }} - перечень стандартов{% endfor %}{% endblock %}
+{% block description %}{% for group in items %}{{ group.description }}{% endfor %}{% endblock %}
+{% block breadcrumb %}{% include 'blocks/gost-breadcrumb.html' %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <main>
+        <div class="material-content row mb-3">
+            <div class="col-md-12">
+                <div class="block bg-light rounded">
+                    <article>
+                        {% for group in items %}
+                        <h1>{{ group.subsection_group }} - {{ group.subsection_name }}</h1>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Стандарт</th>
+                                    <th>Наименование</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in group.gosts_set.all %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td><a href="{{ item.get_absolute_url }}">{{ item.standard }} {{ item.standard_number }}</a></td>
+                                    <td><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endfor %}
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

@@ -50,8 +50,8 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <caption>Цены на металлы по состоянию
-                                            на: 29-12-2022 16:23.
-                                            Курс доллара ЦБ РФ на сегодня 76,8765 руб.</caption>
+                                            на: {% for metal in metal_prices %}{% if forloop.counter == 1 %}{{ metal.created_at }}{% endif %}{% endfor %}.
+                                            Курс доллара ЦБ РФ на сегодня {{ usd_exchange_rate.price }} руб.</caption>
                                         <thead>
                                         <tr>
                                             <th>Металл</th>
@@ -62,13 +62,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        {% for metal in metal_prices %}
                                             <tr>
-                                                <th>WSFw</th>
-                                                <td>wdVwev</td>
-                                                <td>asdadbeb</td>
-                                                <td>adsfvaev</td>
-                                                <td>dvweVEWVw</td>
+                                                <th>{{ metal.name }}</th>
+                                                <td>{{ metal.price }}</td>
+                                                <td>{{ metal.chng_percents }}</td>
+                                                <td>{{ metal.chng_absolut }}</td>
+                                                <td>{{ metal.unit }}</td>
                                             </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -81,9 +83,11 @@
                         <div class="row">
                             <div class="col">
                                     <ul class="news">
-                                        <li class="mb-2"><a class="news-a" href="" target="_blank" rel="noopener">
-                                                <div class="news-icon" style="background-image:/company-favicons/"></div>
-                                                <span>sdvSDVsdvsDV</span></a></li>
+                                        {% for item in news %}
+                                        <li class="mb-2"><a class="news-a" href="{{ item.url }}" target="_blank" rel="noopener">
+                                                <div class="news-icon" style="background-image:url({{ "/media/news_company_logo/"|add:item.source|add:".png" }})"></div>
+                                                <span>{{ item.title }}</span></a></li>
+                                        {% endfor %}
                                     </ul>
                             </div>
                         </div>
@@ -92,11 +96,12 @@
                             <h2>Последние публикации из справочника</h2>
                         </div>
                         <div class="row justify-content-start">
+                            {% for item in items %}
                                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-4">
                                     <article class="card mb-3 sprav-header">
-                                        <img src="">
+                                        <img src="{{ item.thumb_img_article.url }}">
                                         <header class="card-body">
-                                            <p><a href="">sdvWDVSwedv</a></p>
+                                            <p><a href="{{ item.get_absolute_url }}">{{ item.h1 }}</a></p>
                                         </header>
                                         <footer>
                                             <div class="btn-read mb-3 d-flex">
@@ -106,11 +111,12 @@
                                                     <rect y="10" width="100" height="1"></rect>
                                                     <rect y="15" width="100" height="1"></rect>
                                                 </svg>
-                                                <a href="" class="ms-2">Читать</a></div>
+                                                <a href="{{ item.get_absolute_url }}" class="ms-2">Читать</a></div>
                                         </footer>
                                     </article>
                                 </div>
-                                <div class="text-end"><a href="#">Все материалы</a></div>
+                            {% endfor %}
+                                <div class="text-end"><a href="{% url 'spravochnik:spravochnik-index-show'%}">Все материалы</a></div>
                         </div>
                     </main>
                 </div>
