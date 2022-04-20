@@ -16,8 +16,12 @@
                             <h1>{{ item.h1 }}</h1>
                             <div class="row">
                                 <div class="col mx-4">
-                                    {{ item.post }}
+                                    {{ item.post|safe }}
                                 </div>
+                                {% url 'home:about' 'contacts' as a_contacts %}
+                                {% url 'home:about' 'ads' as a_ads %}
+                                {% url 'home:about' 'bug-report' as a_bug %}
+                                {% if request.path == a_contacts or request.path == a_ads or request.path == a_bug %}
                                 <div class="col-md-5 me-3 mb-3">
                                     <div class="border p-3 rounded">
                                         <form method="POST" action="{{ request.path }}">
@@ -59,6 +63,7 @@
                                         </form>
                                     </div>
                                 </div>
+                                {% endif %}
                             </div>
                         </article>
                     </div>
