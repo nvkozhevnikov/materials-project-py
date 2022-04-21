@@ -2,7 +2,8 @@ from __future__ import print_function
 import sib_api_v3_sdk
 from sib_api_v3_sdk.rest import ApiException
 
-import config
+from config import config
+
 
 def subscribe_doi(email):
     """ Подписаться double opt in в sendinblue.com. Инструкция https://developers.sendinblue.com/reference/createdoicontact"""

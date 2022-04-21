@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import random
 from homepage.models import MetalPrices
 
-import proxy_pool
+from config import proxy_pool
 
 
 def get_headers_proxy():
