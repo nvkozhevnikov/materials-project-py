@@ -10,18 +10,17 @@ from .forms import *
 from itertools import chain
 from datetime import datetime, timedelta
 
-from homepage.services.sendinblue_service import subscribe_doi, send_transactional_email
+# from homepage.services.sendinblue_service import subscribe_doi, send_transactional_email
 from .services.cbr_exchange_rate_service import get_usd_rate
 from .services.get_metal_prices_service import get_metal_prices
 from .services.news_parser_service import get_news
+from .tasks import subscribe_doi_sendinblue, send_transaction_email_sendinblue
 
-
-
-def test(request):
+def download_data_everyday():
     get_news()
     get_metal_prices()
     get_usd_rate()
-    return redirect('/')
+    return None
 
 
 class Index(ListView):
@@ -43,7 +42,7 @@ def about(request, slug_about):
     if request.method == 'POST':
         form = AboutForm(request.POST)
         if form.is_valid():
-            send_transactional_email(form.cleaned_data)
+            send_transaction_email_sendinblue.delay(form.cleaned_data)
             return HttpResponseRedirect(request.path)
     else:
         form = AboutForm()
@@ -57,11 +56,9 @@ def subscribe(request):
     if request.method == 'POST':
         form = SubscribeForm(request.POST)
         if form.is_valid():
-            subscribe_doi(form.cleaned_data['email'])
+            subscribe_doi_sendinblue.delay(form.cleaned_data['email'])
 
-    return render(request, 'homepage/index.html', {
-        'h1': 'Metalworkind',
-    })
+    return redirect('/')
 
 class Search(ListView):
     """ Поиск материалов """
@@ -87,3 +84,5 @@ class Search(ListView):
         context = super().get_context_data(**kwargs)
         context['s'] = self.request.GET.get('s')
         return context
+
+
