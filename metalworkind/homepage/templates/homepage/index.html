@@ -50,7 +50,7 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <caption>Цены на металлы по состоянию
-                                            на: {% for metal in metal_prices %}{% if forloop.counter == 1 %}{{ metal.created_at }}{% endif %}{% endfor %}.
+                                            на: {{ usd_exchange_rate.date|date:'d.m.Y H:m' }}.
                                             Курс доллара ЦБ РФ на сегодня {{ usd_exchange_rate.price }} руб.</caption>
                                         <thead>
                                         <tr>
