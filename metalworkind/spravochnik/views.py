@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseNotFound
 from django.views.generic import ListView
 
 from .models import *
@@ -64,5 +65,8 @@ def show_article(request, slug_category, slug_article):
         'article': article,
         'breadcrumb': breadcrumb,
     })
+
+def page_not_found_404(request, exception):
+    return HttpResponseNotFound(f"<h1>404</h1>")
 
 

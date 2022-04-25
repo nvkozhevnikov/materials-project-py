@@ -12,3 +12,5 @@ urlpatterns = [
     path('<slug:slug_category>/<slug:slug_article>/', show_article, name='spravochnik-article-show'),
     # path('<slug:slug_category>/<slug:slug_article>/', ShowArticle.as_view(), name='spravochnik-article-show'),
 ]
+
+handler404 = page_not_found_404
