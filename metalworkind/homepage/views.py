@@ -22,6 +22,9 @@ def download_data_everyday():
     get_usd_rate()
     return None
 
+def page_not_found_404(request, exception):
+    return render(request, 'homepage/404.html', status=404)
+
 
 class Index(ListView):
     template_name = 'homepage/index.html'
@@ -84,5 +87,6 @@ class Search(ListView):
         context = super().get_context_data(**kwargs)
         context['s'] = self.request.GET.get('s')
         return context
+
 
 

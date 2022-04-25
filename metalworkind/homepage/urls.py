@@ -9,3 +9,5 @@ urlpatterns = [
     path('about/<slug:slug_about>/', about, name='about'),
     # path('test/', test, name='test'),
 ]
+
+handler404 = "homepage.views.page_not_found_404"

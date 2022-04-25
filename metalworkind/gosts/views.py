@@ -1,11 +1,13 @@
 from django.views.generic import ListView
+from .utils import *
 
 from .models import *
 
-class Index(ListView):
+class Index(DataMixin, ListView):
     model = GostSections
     context_object_name = 'items'
     template_name = 'gosts/index.html'
+    allow_empty = False
 
     def get_queryset(self):
         return GostSections.objects.all()
@@ -15,10 +17,11 @@ class Index(ListView):
         context['sub_sections'] = GostSubSections.objects.all()
         return context
 
-class ShowGostSection(ListView):
+class ShowGostSection(DataMixin, ListView):
     model = GostSections
     context_object_name = 'items'
     template_name = 'gosts/gost-section.html'
+    allow_empty = False
 
     def get_queryset(self):
         return GostSections.objects.filter(slug=self.kwargs['slug_gost_section'])
@@ -28,10 +31,11 @@ class ShowGostSection(ListView):
         context['gost_section'] = 'ok'
         return context
 
-class ShowGostGroup(ListView):
+class ShowGostGroup(DataMixin, ListView):
     model = GostSubSections
     context_object_name = 'items'
     template_name = 'gosts/gost-group.html'
+    allow_empty = False
 
     def get_queryset(self):
         return GostSubSections.objects.filter(slug=self.kwargs['slug_gost_group']).select_related('section')
@@ -41,10 +45,11 @@ class ShowGostGroup(ListView):
         context['gost_subsection'] = 'ok'
         return context
 
-class ShowGost(ListView):
+class ShowGost(DataMixin, ListView):
     model = Gosts
     context_object_name = 'items'
     template_name = 'gosts/gost-article.html'
+    allow_empty = False
 
     def get_queryset(self):
         return Gosts.objects.filter(slug=self.kwargs['slug_gost']).select_related('subsection')
