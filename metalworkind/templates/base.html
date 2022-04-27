@@ -9,12 +9,16 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <title>{% block title %}{% endblock %}</title>
+    {% include 'blocks/counters-head.html' %}
 </head>
 <body>
+{% include 'blocks/counters-body-top.html' %}
 {% include 'blocks/header.html' %}
 {% block breadcrumb %} {% endblock %}
 
 {% block content %} {% endblock %}
+
+{% if request.path != '/' %}{% include 'blocks/share.html' %}{% endif %}
 
 {% include 'blocks/subscribe.html' %}
 {% include 'blocks/footer.html' %}
