@@ -11,7 +11,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'download-currency-everyday': {
         'task': 'homepage.tasks.download_currency_rate',
-        'schedule': crontab(minute=0, hour=8),
+        'schedule': crontab(hour='*/24'),
     },
     'download-metal_prices_every_3h': {
         'task': 'homepage.tasks.download_metal_prices',

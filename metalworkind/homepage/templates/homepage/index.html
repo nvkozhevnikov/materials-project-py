@@ -17,7 +17,7 @@
                                         <h6 class="card-subtitle mb-2 text-muted">Черные и цветные металлы</h6>
                                         <p class="card-text">Более 3000 материалов, поиск заменителей, иностранных
                                             аналогов.</p>
-                                        <a href="" class="card-link link-div">Марочник</a>
+                                        <a href="{% url 'marochnik:marochnik-index-show' %}" class="card-link link-div">Марочник</a>
                                     </div>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                                         <h6 class="card-subtitle mb-2 text-muted">ГОСТы</h6>
                                         <p class="card-text">База данных государственных стандартов и нормативной
                                             документации материалов.</p>
-                                        <a href="" class="card-link link-div">Стандарты</a>
+                                        <a href="{% url 'gosts:gosts-index-show' %}" class="card-link link-div">Стандарты</a>
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                                         <h6 class="card-subtitle mb-2 text-muted">Статьи, аналитика</h6>
                                         <p class="card-text">Подборка публикаций о технологиях и способах
                                             металлообработки.</p>
-                                        <a href="" class="card-link">Справочник</a>
+                                        <a href="{% url 'spravochnik:spravochnik-index-show' %}" class="card-link">Справочник</a>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <caption>Цены на металлы по состоянию
-                                            на: {{ usd_exchange_rate.date|date:'d.m.Y H:m' }}.
+                                            на: {% for metal in metal_prices %}{% if forloop.counter == 1 %}{{ metal.created_at|date:'d.m.Y H:m' }}{% endif %}{% endfor %}.
                                             Курс доллара ЦБ РФ на сегодня {{ usd_exchange_rate.price }} руб.</caption>
                                         <thead>
                                         <tr>
@@ -76,9 +76,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                         <div class="col-12"><h2 class="my-3">Новости компаний</h2></div>
                         <div class="row">
                             <div class="col">
@@ -123,5 +120,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
