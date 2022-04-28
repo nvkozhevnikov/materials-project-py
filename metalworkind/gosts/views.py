@@ -10,7 +10,7 @@ class Index(DataMixin, ListView):
     allow_empty = False
 
     def get_queryset(self):
-        return GostSections.objects.all()
+        return GostSections.objects.filter(is_published=True)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
