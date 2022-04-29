@@ -255,6 +255,7 @@ p img {
     position: relative;
     overflow: visible;
     white-space: nowrap;
+    margin-right: 3px;
 }
 
 
