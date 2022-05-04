@@ -15,6 +15,9 @@ from pathlib import Path
 
 from config import config
 
+
+DATETIME_FORMAT = 'd-m-y H:i:s'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

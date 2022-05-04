@@ -25,9 +25,6 @@ class Categories(models.Model):
     def get_absolute_url(self):
         return reverse('marochnik:marochnik-subcategory-show', kwargs={'slug_category': self.slug})
 
-    # def count_materials(self):
-    #     return Materials.objects.filter(subcategory__in=self.subcategories_set.all()).count()
-
 class SubCategories(models.Model):
     name = models.CharField(max_length=255, unique=True,verbose_name='Подкатегория')
     slug = models.SlugField(max_length=255, unique=True, verbose_name='URL')
@@ -98,6 +95,11 @@ class Materials(models.Model):
                                'slug_material': self.slug
                                }
                        )
+
+    # def change_date_format(self, obj):
+    #     return obj.updated_at.strftime('%d %b %Y %H:%M:%S')
+    # change_date_format.admin_order_field = 'timefield'
+    # change_date_format.short_description = 'Дата обновления'
 
 class Microstructures(models.Model):
     photo_href = models.CharField(max_length=500, unique=True, verbose_name='URL нахождения фото')
