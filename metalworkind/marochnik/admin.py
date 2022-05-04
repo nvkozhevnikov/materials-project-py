@@ -20,6 +20,6 @@ class SubCategoriesAdmin(admin.ModelAdmin):
 @admin.register(Materials)
 class MaterialsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
-    list_display = ('name', 'is_published', 'updated_at')
+    list_display = ('name', 'is_published', 'updated_at',)
     list_filter = ('is_published',)
 
