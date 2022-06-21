@@ -96,11 +96,6 @@ class Materials(models.Model):
                                }
                        )
 
-    # def change_date_format(self, obj):
-    #     return obj.updated_at.strftime('%d %b %Y %H:%M:%S')
-    # change_date_format.admin_order_field = 'timefield'
-    # change_date_format.short_description = 'Дата обновления'
-
 class Microstructures(models.Model):
     photo_href = models.CharField(max_length=500, unique=True, verbose_name='URL нахождения фото')
     photo_alt = models.CharField(max_length=700, verbose_name='Alt фото')
