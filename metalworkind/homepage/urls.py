@@ -9,7 +9,7 @@ urlpatterns = [
     path('search/', Search.as_view(), name='search'),
     path('about/<slug:slug_about>/', about, name='about'),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'),),
-    path('yandex_77f8b102f26b1e8e.html', TemplateView.as_view(template_name='yandex_webmaster_confirmation', content_type='text/plain'),),
+    path('yandex_77f8b102f26b1e8e.html', TemplateView.as_view(template_name='yandex_webmaster_confirmation', content_type='text/html'),),
     # path('test/', test, name='test'),
 ]
 
